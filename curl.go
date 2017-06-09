@@ -112,6 +112,11 @@ func HttpsDo(action,url,value string) string {
 
 //get请求可以直接http.Get方法，非常简单。
 func HttpGet(url string) string {
+	defer func(){
+		if err := recover();err != nil {
+			fmt.Println(err)
+		}
+	}()
 	resp, err := http.Get(url)
 	if err != nil {
 		// handle error
