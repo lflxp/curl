@@ -19,11 +19,11 @@ func HttpsGet(url string) string {
 		println(err.Error())
 	}
 
+	defer resp.Body.Close()
 	defer func() {
 		if err := recover(); err != nil {
-			return err.Error()
+			fmt.Println(err)
 		}
-		resp.Body.Close()
 	}()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
