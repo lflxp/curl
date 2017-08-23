@@ -130,13 +130,15 @@ func HttpGet(url string) string {
 		println(err.Error())
 	}
 
-	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		// handle error
 		println(err.Error())
 	}
 
+	if resp != nil {
+		resp.Body.Close()
+	}
 	//fmt.Println(string(body))
 	return string(body)
 }
