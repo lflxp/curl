@@ -19,7 +19,6 @@ func HttpsGet(url string) string {
 		println(err.Error())
 	}
 
-	defer resp.Body.Close()
 	defer func() {
 		if err := recover(); err != nil {
 			fmt.Println(err)
@@ -31,6 +30,9 @@ func HttpsGet(url string) string {
 		println(err.Error())
 	}
 
+	if resp != nil {
+		resp.Body.Close()
+	}
 	//fmt.Println(string(body))
 	return string(body)
 }
