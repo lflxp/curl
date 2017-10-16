@@ -25,14 +25,12 @@ func HttpsGet(url string) string {
 		}
 	}()
 	body, err := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
 	if err != nil {
 		// handle error
 		println(err.Error())
 	}
 
-	if resp != nil {
-		resp.Body.Close()
-	}
 	//fmt.Println(string(body))
 	return string(body)
 }
@@ -131,14 +129,12 @@ func HttpGet(url string) string {
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
 	if err != nil {
 		// handle error
 		println(err.Error())
 	}
 
-	if resp != nil {
-		resp.Body.Close()
-	}
 	//fmt.Println(string(body))
 	return string(body)
 }
